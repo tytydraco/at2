@@ -1,35 +1,29 @@
-import 'package:args/args.dart';
+import 'dart:io';
+
+import 'package:args/command_runner.dart';
+import 'package:at2/src/commands/clear.dart';
+import 'package:at2/src/commands/clone.dart';
+import 'package:at2/src/commands/inject.dart';
 import 'package:at2/src/logging.dart';
 
-ArgParser buildParser() {
-  return ArgParser()
-    ..addFlag(
-      'help',
-      abbr: 'h',
-      negatable: false,
-      help: 'Print this usage information.',
-    );
-}
+Future<void> main(List<String> arguments) async {
+  /// The main command runner for the application entry point.
+  final commandRunner =
+      CommandRunner<void>(
+          'at2',
+          'AutoTriage 2.',
+        )
+        ..addCommand(InjectCommand())
+        ..addCommand(CloneCommand())
+        ..addCommand(ClearCommand());
 
-void printUsage(ArgParser argParser) {
-  log(argParser.usage);
-}
-
-void main(List<String> arguments) {
-  final argParser = buildParser();
   try {
-    final results = argParser.parse(arguments);
-
-    // Show help.
-    if (results.flag('help')) {
-      printUsage(argParser);
-      return;
-    }
-
-    log('Positional arguments: ${results.rest}');
-  } on FormatException catch (e) {
+    await commandRunner.run(arguments);
+  } on UsageException catch (e) {
     log(e.message, logLevel: LogLevel.error);
-    log('');
-    printUsage(argParser);
+    exit(64);
+  } on Exception catch (e) {
+    log(e.toString(), logLevel: LogLevel.error);
+    exit(1);
   }
 }
