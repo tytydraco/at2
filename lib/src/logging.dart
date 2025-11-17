@@ -22,7 +22,7 @@ void log(String content, {LogLevel logLevel = LogLevel.log}) {
       stdout.writeln('\x1B[38;5;244m$content\x1B[0m');
     }
     case LogLevel.log: {
-      stdout.writeln('\x1B[30m$content\x1B[0m');
+      stdout.writeln(content);
     }
     case LogLevel.warn: {
       stdout.writeln('\x1B[33m$content\x1B[0m');

@@ -8,7 +8,7 @@ Future<void> main() async {
       });
 
       test('Log log', () {
-        log('test log', logLevel: LogLevel.log);
+        log('test log');
       });
 
       test('Warning log', () {
