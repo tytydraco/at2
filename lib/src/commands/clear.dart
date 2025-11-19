@@ -1,7 +1,47 @@
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
+import 'package:at2/src/logging.dart';
+import 'package:path/path.dart' as path;
 
 /// The clear command.
 class ClearCommand extends Command<void> {
+  /// Creates a new [ClearCommand].
+  ClearCommand() {
+    argParser.addOption(
+      'directory',
+      abbr: 'd',
+      help: 'The working tree.',
+      defaultsTo: 'working',
+    );
+  }
+
+  Future<void> _clear(String directoryPath, String projectPath) async {
+    if (!Directory(path.join(directoryPath, projectPath)).existsSync()) {
+      log(
+        'Working project $projectPath does not exist',
+        logLevel: LogLevel.warn,
+      );
+      return;
+    }
+
+    try {
+      final directory = Directory(path.join(directoryPath, projectPath));
+      await directory.delete(recursive: true);
+    } on Exception catch (_) {
+      log('Failed to clear project $projectPath', logLevel: LogLevel.warn);
+    }
+  }
+
+  /// The path to the Android working project.
+  static const androidWorkingPath = 'android';
+
+  /// The path to the iOS working project.
+  static const iosWorkingPath = 'ios';
+
+  /// The path to the Flutter working project.
+  static const flutterWorkingPath = 'flutter';
+
   @override
   String get name => 'clear';
 
@@ -10,6 +50,18 @@ class ClearCommand extends Command<void> {
 
   @override
   Future<void> run() async {
-    // TODO: Implement clear command logic
+    final directoryPath = argResults?['directory'] as String;
+
+    final directory = Directory(directoryPath);
+
+    // Assert directory exists.
+    if (!directory.existsSync()) {
+      log('Directory does not exist', logLevel: LogLevel.error);
+      exit(1);
+    }
+
+    await _clear(directory.path, androidWorkingPath);
+    await _clear(directory.path, iosWorkingPath);
+    await _clear(directory.path, flutterWorkingPath);
   }
 }
