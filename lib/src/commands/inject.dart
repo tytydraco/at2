@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
+import 'package:at2/src/util/platforms.dart';
 import 'package:path/path.dart' as path;
 
 /// The inject command.
@@ -43,9 +44,11 @@ class InjectCommand extends Command<void> {
 
   @override
   Future<void> run() async {
+    final platformNames = argResults?.rest ?? [];
     final directoryPath = argResults?['directory'] as String;
     final inputPath = argResults?['input'] as String;
 
+    final platforms = identifiersToPlatforms(platformNames);
     final directory = Directory(directoryPath);
     final input = File(inputPath);
 
@@ -61,8 +64,14 @@ class InjectCommand extends Command<void> {
       exit(1);
     }
 
-    await _inject(input, path.join(directory.path, rivPathAndroid));
-    await _inject(input, path.join(directory.path, rivPathIOS));
-    await _inject(input, path.join(directory.path, rivPathFlutter));
+    if (platforms.contains(Platform.android)) {
+      await _inject(input, path.join(directory.path, rivPathAndroid));
+    }
+    if (platforms.contains(Platform.ios)) {
+      await _inject(input, path.join(directory.path, rivPathIOS));
+    }
+    if (platforms.contains(Platform.flutter)) {
+      await _inject(input, path.join(directory.path, rivPathFlutter));
+    }
   }
 }

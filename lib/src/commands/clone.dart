@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
+import 'package:at2/src/util/platforms.dart';
 import 'package:path/path.dart' as path;
 
 /// The clone command.
@@ -76,9 +77,11 @@ class CloneCommand extends Command<void> {
 
   @override
   Future<void> run() async {
+    final platformNames = argResults?.rest ?? [];
     final directoryPath = argResults?['directory'] as String;
     final templatePath = argResults?['template'] as String;
 
+    final platforms = identifiersToPlatforms(platformNames);
     final directory = Directory(directoryPath);
     final template = Directory(templatePath);
 
@@ -94,8 +97,14 @@ class CloneCommand extends Command<void> {
       exit(1);
     }
 
-    await _clone(template.path, directory.path, androidTemplatePath);
-    await _clone(template.path, directory.path, iosTemplatePath);
-    await _clone(template.path, directory.path, flutterTemplatePath);
+    if (platforms.contains(Platform.android)) {
+      await _clone(template.path, directory.path, androidTemplatePath);
+    }
+    if (platforms.contains(Platform.ios)) {
+      await _clone(template.path, directory.path, iosTemplatePath);
+    }
+    if (platforms.contains(Platform.flutter)) {
+      await _clone(template.path, directory.path, flutterTemplatePath);
+    }
   }
 }

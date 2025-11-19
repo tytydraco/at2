@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
+import 'package:at2/src/util/platforms.dart';
 import 'package:path/path.dart' as path;
 
 /// The clear command.
@@ -42,8 +43,10 @@ class ClearCommand extends Command<void> {
 
   @override
   Future<void> run() async {
+    final platformNames = argResults?.rest ?? [];
     final directoryPath = argResults?['directory'] as String;
 
+    final platforms = identifiersToPlatforms(platformNames);
     final directory = Directory(directoryPath);
 
     // Assert directory exists.
@@ -52,8 +55,14 @@ class ClearCommand extends Command<void> {
       exit(1);
     }
 
-    await _clear(directory.path, androidWorkingPath);
-    await _clear(directory.path, iosWorkingPath);
-    await _clear(directory.path, flutterWorkingPath);
+    if (platforms.contains(Platform.android)) {
+      await _clear(directory.path, androidWorkingPath);
+    }
+    if (platforms.contains(Platform.ios)) {
+      await _clear(directory.path, iosWorkingPath);
+    }
+    if (platforms.contains(Platform.flutter)) {
+      await _clear(directory.path, flutterWorkingPath);
+    }
   }
 }
