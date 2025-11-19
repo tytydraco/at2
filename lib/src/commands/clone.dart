@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:at2/src/logging.dart';
+import 'package:at2/src/util/copy_directory.dart';
 import 'package:at2/src/util/platforms.dart';
 import 'package:path/path.dart' as path;
 
@@ -57,30 +58,12 @@ class CloneCommand extends Command<void> {
         return;
       }
 
-      await _copyDirectory(sourceDir, destDir);
+      await copyDirectory(sourceDir, destDir);
     } on Exception catch (_) {
       log(
         'Failed to clone project from $templatePath to $directoryPath',
         logLevel: LogLevel.warn,
       );
-    }
-  }
-
-  Future<void> _copyDirectory(Directory source, Directory destination) async {
-    await destination.create(recursive: true);
-
-    await for (final entity in source.list()) {
-      if (entity is File) {
-        final destFile = File(
-          path.join(destination.path, path.basename(entity.path)),
-        );
-        await entity.copy(destFile.path);
-      } else if (entity is Directory) {
-        final destSubDir = Directory(
-          path.join(destination.path, path.basename(entity.path)),
-        );
-        await _copyDirectory(entity, destSubDir);
-      }
     }
   }
 
