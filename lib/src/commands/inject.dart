@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
 import 'package:at2/src/util/platforms.dart';
 import 'package:path/path.dart' as path;
@@ -24,6 +23,15 @@ class InjectCommand extends Command<void> {
         defaultsTo: 'input.riv',
       );
   }
+
+  /// The .riv file path for the working Android project.
+  static const rivPathAndroid = 'android/app/src/main/res/raw/input.riv';
+
+  /// The .riv file path for the working iOS project.
+  static const rivPathIOS = 'ios/input.riv';
+
+  /// The .riv file path for the working Flutter project.
+  static const rivPathFlutter = 'flutter/assets/input.riv';
 
   @override
   String get name => 'inject';
