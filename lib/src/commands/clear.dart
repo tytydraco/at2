@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
 import 'package:path/path.dart' as path;
 
@@ -32,15 +33,6 @@ class ClearCommand extends Command<void> {
       log('Failed to clear project $projectPath', logLevel: LogLevel.warn);
     }
   }
-
-  /// The path to the Android working project.
-  static const androidWorkingPath = 'android';
-
-  /// The path to the iOS working project.
-  static const iosWorkingPath = 'ios';
-
-  /// The path to the Flutter working project.
-  static const flutterWorkingPath = 'flutter';
 
   @override
   String get name => 'clear';

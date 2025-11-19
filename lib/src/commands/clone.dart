@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:at2/src/constants.dart';
 import 'package:at2/src/logging.dart';
 import 'package:path/path.dart' as path;
 
@@ -22,15 +23,6 @@ class CloneCommand extends Command<void> {
         defaultsTo: 'template',
       );
   }
-
-  /// The path to the Android template project.
-  static const androidTemplatePath = 'android';
-
-  /// The path to the iOS template project.
-  static const iosTemplatePath = 'ios';
-
-  /// The path to the Flutter template project.
-  static const flutterTemplatePath = 'flutter';
 
   @override
   String get name => 'clone';
@@ -102,13 +94,8 @@ class CloneCommand extends Command<void> {
       exit(1);
     }
 
-    // Clone the Android template project to the working tree.
     await _clone(template.path, directory.path, androidTemplatePath);
-
-    // Clone the iOS template project to the working tree.
     await _clone(template.path, directory.path, iosTemplatePath);
-
-    // Clone the Flutter template project to the working tree.
     await _clone(template.path, directory.path, flutterTemplatePath);
   }
 }
