@@ -59,7 +59,7 @@ class ClearCommand extends Command<void> {
 
     // Assert directory exists.
     if (!directory.existsSync()) {
-      log('Directory does not exist', logLevel: LogLevel.error);
+      log('Directory does not exist: $directoryPath', logLevel: LogLevel.error);
       exit(1);
     }
 

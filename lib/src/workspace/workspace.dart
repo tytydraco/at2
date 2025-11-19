@@ -24,7 +24,7 @@ Future<void> createWorkspace(String workspaceName) async {
 
   if (!Directory(getTemplateDirectoryPath()).existsSync()) {
     log(
-      'Template directory does not exist: ${getTemplateDirectoryPath()}',
+      'Template does not exist: ${getTemplateDirectoryPath()}',
       logLevel: LogLevel.error,
     );
     return;

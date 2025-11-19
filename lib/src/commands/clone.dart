@@ -79,13 +79,13 @@ class CloneCommand extends Command<void> {
 
     // Assert directory exists.
     if (!directory.existsSync()) {
-      log('Directory does not exist', logLevel: LogLevel.error);
+      log('Directory does not exist: $directoryPath', logLevel: LogLevel.error);
       exit(1);
     }
 
     // Assert template exists.
     if (!template.existsSync()) {
-      log('Template does not exist', logLevel: LogLevel.error);
+      log('Template does not exist: $templatePath', logLevel: LogLevel.error);
       exit(1);
     }
 

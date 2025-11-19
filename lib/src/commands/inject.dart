@@ -63,13 +63,13 @@ class InjectCommand extends Command<void> {
 
     // Assert directory exists.
     if (!directory.existsSync()) {
-      log('Directory does not exist', logLevel: LogLevel.error);
+      log('Directory does not exist: $directoryPath', logLevel: LogLevel.error);
       exit(1);
     }
 
     // Assert input exists.
     if (!input.existsSync()) {
-      log('Input does not exist', logLevel: LogLevel.error);
+      log('Input does not exist: $inputPath', logLevel: LogLevel.error);
       exit(1);
     }
 
