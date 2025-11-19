@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-dart pub global activate -s path .
+dart pub global activate -s path . --overwrite
