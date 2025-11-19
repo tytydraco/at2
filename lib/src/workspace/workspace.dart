@@ -22,9 +22,6 @@ Future<void> createWorkspace(String workspaceName) async {
     workspacePath,
   ).create(recursive: true);
 
-  // Change the current working directory to the workspace directory.
-  Directory.current = workspacePath;
-
   if (!Directory(getTemplateDirectoryPath()).existsSync()) {
     log(
       'Template directory does not exist: ${getTemplateDirectoryPath()}',
@@ -44,4 +41,7 @@ Future<void> createWorkspace(String workspaceName) async {
 
   // Create the workspace working directory.
   await Directory(workspaceWorkingPath).create();
+
+  // Print instructions to change to the workspace directory.
+  log('Workspace created at: $workspacePath');
 }
