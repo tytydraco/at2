@@ -29,7 +29,8 @@ class CloneCommand extends Command<void> {
   String get name => 'clone';
 
   @override
-  String get description => 'Clone the template projects to the working tree.';
+  String get description =>
+      'Clone the template projects to the working tree.\n$platformHelpText';
 
   Future<void> _clone(
     String templatePath,

@@ -39,7 +39,7 @@ class ClearCommand extends Command<void> {
   String get name => 'clear';
 
   @override
-  String get description => 'Erase the working directories.';
+  String get description => 'Erase the working directories.\n$platformHelpText';
 
   @override
   Future<void> run() async {

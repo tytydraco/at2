@@ -29,7 +29,8 @@ class InjectCommand extends Command<void> {
   String get name => 'inject';
 
   @override
-  String get description => 'Inject a .riv into the working tree.';
+  String get description =>
+      'Inject a .riv into the working tree.\n$platformHelpText';
 
   Future<void> _inject(File input, String destinationPath) async {
     try {

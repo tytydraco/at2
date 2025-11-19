@@ -17,6 +17,17 @@ enum Platform {
   final String name;
 }
 
+/// The help text for the platforms.
+const platformHelpText = '''
+
+Specify the platforms to operate on. If no platforms are specified, 
+all platforms will be operated on. The platforms are:
+
+Platforms:
+  - android
+  - ios
+  - flutter''';
+
 /// Convert a list of platform names to a list of platforms.
 List<Platform> identifiersToPlatforms(List<String> platformNames) {
   // If no platform names are provided, return all platforms.
