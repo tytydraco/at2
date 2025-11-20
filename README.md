@@ -22,6 +22,15 @@ With `at2`, the process is much more time-efficient:
 
 This populates a `working` directory with all platform templates and injects the `.riv` file for each project, all of which are ready to use for testing immediately.
 
+# Global Workspace Setup
+
+Global workspaces exist as directories `~/at2` containing `working` and `template` directories. Supplying the global `~/at2/.template` folder is necessary to clone new workspaces.
+
+1) Run `at2 workspace test` to initialize the global `~/at2` directory.
+2) Copy the [project template](template/) directories to `~/at2/.template`
+
+The `~/at2/test` workspace directory can be deleted now.
+
 # Usage
 
 * `at2 clone <PLATFORM, ...>`: clones the local `template` directories to the local `working` directory. Can specify a `-d <WORKING>` and `-t <TEMPLATE>`.
