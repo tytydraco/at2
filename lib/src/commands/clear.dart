@@ -49,6 +49,9 @@ class ClearCommand extends Command<void> {
   /// The path to the React working project.
   static const reactWorkingPath = 'react';
 
+  /// The path to the React Native working project.
+  static const reactNativeWorkingPath = 'reactnative';
+
   @override
   String get name => 'clear';
 
@@ -83,6 +86,9 @@ class ClearCommand extends Command<void> {
     }
     if (platforms.contains(Platform.react)) {
       await _clear(directory.path, reactWorkingPath);
+    }
+    if (platforms.contains(Platform.reactNative)) {
+      await _clear(directory.path, reactNativeWorkingPath);
     }
   }
 }

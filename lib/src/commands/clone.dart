@@ -40,6 +40,9 @@ class CloneCommand extends Command<void> {
   /// The path to the React template project.
   static const reactTemplatePath = 'react';
 
+  /// The path to the React Native template project.
+  static const reactNativeTemplatePath = 'reactnative';
+
   @override
   String get name => 'clone';
 
@@ -109,6 +112,9 @@ class CloneCommand extends Command<void> {
     }
     if (platforms.contains(Platform.react)) {
       await _clone(template.path, directory.path, reactTemplatePath);
+    }
+    if (platforms.contains(Platform.reactNative)) {
+      await _clone(template.path, directory.path, reactNativeTemplatePath);
     }
   }
 }

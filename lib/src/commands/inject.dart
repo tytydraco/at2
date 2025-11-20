@@ -39,6 +39,9 @@ class InjectCommand extends Command<void> {
   /// The .riv file path for the working React project.
   static const rivPathReact = 'react/public/input.riv';
 
+  /// The .riv file path for the working React Native project.
+  static const rivPathReactNative = 'reactnative/assets/input.riv';
+
   @override
   String get name => 'inject';
 
@@ -93,6 +96,9 @@ class InjectCommand extends Command<void> {
     }
     if (platforms.contains(Platform.react)) {
       await _inject(input, path.join(directory.path, rivPathReact));
+    }
+    if (platforms.contains(Platform.reactNative)) {
+      await _inject(input, path.join(directory.path, rivPathReactNative));
     }
   }
 }
