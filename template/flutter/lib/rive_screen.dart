@@ -25,6 +25,9 @@ class _RiveScreenState extends State<RiveScreen> {
     return RiveWidgetBuilder(
       fileLoader: fileLoader,
       dataBind: DataBind.auto(),
+      onLoaded: (state) {
+        state.controller.layoutScaleFactor = 1;
+      },
       builder: (context, state) {
         if (state is! RiveLoaded) {
           return CircularProgressIndicator();
@@ -32,11 +35,8 @@ class _RiveScreenState extends State<RiveScreen> {
 
         final vmi = state.viewModelInstance!;
 
-        return RiveWidget(
-          controller: state.controller,
-          fit: Fit.layout,
-        );
-      }
+        return RiveWidget(controller: state.controller, fit: Fit.layout);
+      },
     );
   }
 }

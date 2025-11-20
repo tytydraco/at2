@@ -38,53 +38,15 @@ class MainActivity : ComponentActivity() {
                                 // Load Rive resource from raw resources and configure.
                                 it.setRiveResource(
                                     resId = R.raw.input,
-                                    artboardName = "calendar_artboard_new",
-                                    stateMachineName = "calendar_statemachine",
                                     fit = Fit.LAYOUT,
                                     autoBind = false,
                                     autoplay = true,
                                 )
 
-                                it.layoutScaleFactor = 4f
+                                it.layoutScaleFactor = 1f
 
                                 // Manage the View Model Instance (VMI) as needed.
                                 //it.controller.activeArtboard!!.viewModelInstance!!
-
-                                it.controller.setTextRunValue(
-                                    "label_run",
-                                    "ج",
-                                    "label_artboard_01"
-                                )
-
-                                it.controller.setTextRunValue(
-                                    "label_run",
-                                    "خ",
-                                    "label_artboard_02"
-                                )
-
-                                it.controller.setTextRunValue(
-                                    "label_run",
-                                    "ع",
-                                    "label_artboard_03"
-                                )
-
-                                it.controller.setTextRunValue(
-                                    "label_run",
-                                    "ج",
-                                    "label_artboard_04"
-                                )
-
-                                it.controller.setTextRunValue(
-                                    "label_run",
-                                    "ح",
-                                    "label_artboard_05"
-                                )
-
-                                it.controller.setBooleanState(
-                                    "calendar_statemachine",
-                                    "earned_anim_trig",
-                                    true,
-                                )
                             }
                         }
                     )
