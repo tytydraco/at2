@@ -6,7 +6,6 @@ import 'package:at2/src/commands/clone.dart';
 import 'package:at2/src/commands/inject.dart';
 import 'package:at2/src/commands/workspace.dart';
 import 'package:at2/src/logging.dart';
-import 'package:at2/src/workspace/home_directory.dart';
 
 Future<void> main(List<String> arguments) async {
   /// The main command runner for the application entry point.
