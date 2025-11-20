@@ -37,6 +37,9 @@ class CloneCommand extends Command<void> {
   /// The path to the Web template project.
   static const webTemplatePath = 'web';
 
+  /// The path to the React template project.
+  static const reactTemplatePath = 'react';
+
   @override
   String get name => 'clone';
 
@@ -103,6 +106,9 @@ class CloneCommand extends Command<void> {
     }
     if (platforms.contains(Platform.web)) {
       await _clone(template.path, directory.path, webTemplatePath);
+    }
+    if (platforms.contains(Platform.react)) {
+      await _clone(template.path, directory.path, reactTemplatePath);
     }
   }
 }

@@ -12,7 +12,10 @@ enum Platform {
   flutter('flutter'),
 
   /// Web.
-  web('web');
+  web('web'),
+
+  /// React.
+  react('react');
 
   const Platform(this.name);
 
@@ -30,7 +33,8 @@ Platforms:
   - android
   - ios
   - flutter
-  - web''';
+  - web
+  - react''';
 
 /// Convert a list of platform names to a list of platforms.
 List<Platform> identifiersToPlatforms(List<String> platformNames) {

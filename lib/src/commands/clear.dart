@@ -46,6 +46,9 @@ class ClearCommand extends Command<void> {
   /// The path to the Web working project.
   static const webWorkingPath = 'web';
 
+  /// The path to the React working project.
+  static const reactWorkingPath = 'react';
+
   @override
   String get name => 'clear';
 
@@ -77,6 +80,9 @@ class ClearCommand extends Command<void> {
     }
     if (platforms.contains(Platform.web)) {
       await _clear(directory.path, webWorkingPath);
+    }
+    if (platforms.contains(Platform.react)) {
+      await _clear(directory.path, reactWorkingPath);
     }
   }
 }
