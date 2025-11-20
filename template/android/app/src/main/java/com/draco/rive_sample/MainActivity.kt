@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                                 it.setRiveResource(
                                     resId = R.raw.input,
                                     fit = Fit.LAYOUT,
-                                    autoBind = false,
+                                    autoBind = true,
                                     autoplay = true,
                                 )
 
