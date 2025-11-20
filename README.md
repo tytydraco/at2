@@ -37,3 +37,12 @@ The `~/at2/test` workspace directory can be deleted now.
 * `at2 inject <PLATFORM, ...>`: clones the local `input.riv` to the local `working` directories. Can specify `-i <INPUT>`.
 * `at2 clear <PLATFORM, ...>`: deletes the local `working` directories.
 * `at2 workspace <NAME>`: creates a new global workspace at `~/at2` and clones the global `template` directories at `~/at2/.template`.
+
+# Template Injection Paths
+
+* Android: `android/app/src/main/res/raw/input.riv`
+* iOS: `ios/input.riv`
+* Flutter: `flutter/assets/input.riv`
+* Web: `web/input.riv`
+* React: `react/public/input.riv`
+* React Native: `reactnative/assets/input.riv`
