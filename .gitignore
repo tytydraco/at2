@@ -30,3 +30,5 @@ doc/api/
 
 # Ignore editor files.
 .idea/
+**/.DS_Store
+**/input.riv
