@@ -33,6 +33,9 @@ class InjectCommand extends Command<void> {
   /// The .riv file path for the working Flutter project.
   static const rivPathFlutter = 'flutter/assets/input.riv';
 
+  /// The .riv file path for the working Web project.
+  static const rivPathWeb = 'web/input.riv';
+
   @override
   String get name => 'inject';
 
@@ -81,6 +84,9 @@ class InjectCommand extends Command<void> {
     }
     if (platforms.contains(Platform.flutter)) {
       await _inject(input, path.join(directory.path, rivPathFlutter));
+    }
+    if (platforms.contains(Platform.web)) {
+      await _inject(input, path.join(directory.path, rivPathWeb));
     }
   }
 }

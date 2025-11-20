@@ -43,6 +43,9 @@ class ClearCommand extends Command<void> {
   /// The path to the Flutter working project.
   static const flutterWorkingPath = 'flutter';
 
+  /// The path to the Web working project.
+  static const webWorkingPath = 'web';
+
   @override
   String get name => 'clear';
 
@@ -71,6 +74,9 @@ class ClearCommand extends Command<void> {
     }
     if (platforms.contains(Platform.flutter)) {
       await _clear(directory.path, flutterWorkingPath);
+    }
+    if (platforms.contains(Platform.web)) {
+      await _clear(directory.path, webWorkingPath);
     }
   }
 }

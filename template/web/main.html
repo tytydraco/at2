@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rive Sample</title>
+    <script src="https://unpkg.com/@rive-app/canvas"></script>
+    <script>
+        window.onload = () => {
+            initRive();
+        }
+
+        function initRive() {
+            const canvas = document.getElementById('canvas');
+            const r = new rive.Rive({
+                src: 'input.riv',
+                canvas: canvas,
+                fit: 'layout',
+                layoutScaleFactor: 1,
+                autoplay: true,
+                autobind: true,
+                onLoad: () => {
+                    r.resizeDrawingSurfaceToCanvas();
+                    console.log('Rive loaded');
+                },
+            });
+
+            window.addEventListener("resize", () => {
+                r.resizeDrawingSurfaceToCanvas();
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
+</html>

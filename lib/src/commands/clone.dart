@@ -34,6 +34,9 @@ class CloneCommand extends Command<void> {
   /// The path to the Flutter template project.
   static const flutterTemplatePath = 'flutter';
 
+  /// The path to the Web template project.
+  static const webTemplatePath = 'web';
+
   @override
   String get name => 'clone';
 
@@ -97,6 +100,9 @@ class CloneCommand extends Command<void> {
     }
     if (platforms.contains(Platform.flutter)) {
       await _clone(template.path, directory.path, flutterTemplatePath);
+    }
+    if (platforms.contains(Platform.web)) {
+      await _clone(template.path, directory.path, webTemplatePath);
     }
   }
 }

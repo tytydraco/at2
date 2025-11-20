@@ -9,7 +9,10 @@ enum Platform {
   ios('ios'),
 
   /// Flutter.
-  flutter('flutter');
+  flutter('flutter'),
+
+  /// Web.
+  web('web');
 
   const Platform(this.name);
 
@@ -26,7 +29,8 @@ all platforms will be operated on. The platforms are:
 Platforms:
   - android
   - ios
-  - flutter''';
+  - flutter
+  - web''';
 
 /// Convert a list of platform names to a list of platforms.
 List<Platform> identifiersToPlatforms(List<String> platformNames) {
