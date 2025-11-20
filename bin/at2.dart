@@ -20,14 +20,6 @@ Future<void> main(List<String> arguments) async {
         ..addCommand(ClearCommand())
         ..addCommand(WorkspaceCommand());
 
-  // Create the home directory if it does not exist.
-  await createHomeDirectory();
-
-  // Create the template directory if it does not exist
-  // and create a simple README.md file to alert the user
-  // if the template directory is empty.
-  await createTemplateDirectory();
-
   try {
     await commandRunner.run(arguments);
   } on UsageException catch (e) {
